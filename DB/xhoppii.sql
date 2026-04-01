@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Mar-2026 às 21:26
+-- Tempo de geração: 01-Abr-2026 às 22:11
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -18,24 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `xhopii`
+-- Banco de dados: `xhoppii`
 --
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `cliente`
---
-
-CREATE TABLE `cliente` (
-  `cpf` char(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `sobrenome` varchar(100) NOT NULL,
-  `dataNasc` date NOT NULL,
-  `telefone` varchar(15) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
-  `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -51,22 +35,44 @@ CREATE TABLE `produto` (
   `valor` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `userId` int(11) NOT NULL,
+  `CPF_CNPJ` bigint(15) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `type` enum('customer','seller','Admin') NOT NULL,
+  `Status` enum('Ativo','Inativo') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`userId`, `CPF_CNPJ`, `name`, `email`, `password`, `type`, `Status`) VALUES
+(1, 12345678900, 'Matheus William', 'eu@gmail.com', '$2y$10$8vm4CooXQG8UTLR4hCQjcuITOA/xcCDrhyPCtAddNr2Yo/.njEdMy', 'Admin', 'Ativo');
+
 --
 -- Índices para tabelas despejadas
 --
-
---
--- Índices para tabela `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`cpf`),
-  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Índices para tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`userId`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -77,6 +83,12 @@ ALTER TABLE `produto`
 --
 ALTER TABLE `produto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

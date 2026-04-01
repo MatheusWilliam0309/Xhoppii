@@ -3,3 +3,6 @@
     <hr>
     <p>© 2022 Xhopii. Todos os direitos reservados</p>
 </footer>
+
+
+<!-- footer pré definido -->

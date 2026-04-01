@@ -1,5 +1,5 @@
 <?php
-require "../processamento/funcoesBD.php";
+require "./processamento/funcoesBD.php";
 ?>
 
     <section class="conteudo-visualizar">
